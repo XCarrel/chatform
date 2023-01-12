@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+
+#chatformbox {
+    width: 30%;
+    background-image: url('cfbg.jpeg');
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.chatformanswer {
+	position: relative;
+    padding: 15px;
+    margin: 5px;
+    margin-bottom: 20px;
+    margin-left: 60px;
+    background-color: rgba(166,172,238,255);
+    border-radius: 5px;
+    box-shadow: 3px 5px 7px rgb(150, 156, 239);
+}
+
+.chatformquestion {
+	position: relative;
+    padding: 15px;
+    margin: 5px;
+    margin-bottom: 20px;
+    margin-right: 60px;
+    background-color: rgba(166,172,238,255);
+    border-radius: 5px;
+    box-shadow: 3px 5px 7px rgb(150, 156, 239);
+}

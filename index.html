@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ChatForm</title>
+    <link rel="stylesheet" href="chatform.css" />
+    <script src="chatform.js" defer></script>
+  </head>
+  <body>
+    <form
+      id="update-run-form"
+      action="http://localhost:8000/runs"
+      method="POST"
+    >
+      <input
+        type="hidden"
+        name="_token"
+        value="wDf9RvzZSi22X6gVvUKDWMObOjj232r43493CHT1"
+      />
+      <input type="hidden" name="_method" value="POST" />
+      <div class="field is-horizontal">
+        <label class="label">Artiste : </label>
+        <input
+          id="search-input-artist"
+          tabindex="1"
+          data-search-api-url="http://localhost:8000/artists/search"
+          class="input"
+          type="text"
+          name="artist"
+          autocomplete="off"
+          value=""
+          placeholder="Artiste"
+        />
+      </div>
+      <div class="field is-horizontal">
+        <label class="label">Passagers :</label>
+        <input
+          class="input"
+          type="text"
+          name="passengers"
+          tabindex="2"
+          value=""
+          placeholder="Nombre de passagers"
+        />
+        <input
+          type="checkbox"
+          tabindex="3"
+          style="vertical-align: middle"
+          name="pax_tbc"
+        />
+        <label for="pax_tbc" style="vertical-align: middle">A confirmer</label>
+      </div>
+
+      <div class="field is-horizontal">
+        <label class="label">Date :</label>
+        <input
+          class="input"
+          type="date"
+          name="planned_at_date"
+          tabindex="4"
+          value="2023-01-12"
+          placeholder="Date de début"
+        />
+      </div>
+
+      <div class="field is-horizontal">
+        <label class="label">Informations</label>
+        <textarea
+          class="textarea"
+          name="infos"
+          tabindex="6"
+          placeholder="Informations liées au run, choses à prendre..."
+        ></textarea>
+      </div>
+      <div class="field is-horizontal">
+        <label class="label">Transports :</label>
+        <input
+          class="input"
+          type="text"
+          name="transportationMeans"
+          tabindex="6"
+          placeholder="Transports"
+        />
+      </div>
+      <div class="field is-horizontal">
+        <label class="label">Nom du contact :</label>
+        <input
+          class="input"
+          type="text"
+          name="nameContact"
+          tabindex="6"
+          placeholder="Nom du contact"
+        />
+      </div>
+      <div class="field is-horizontal">
+        <label class="label">Numéro du contact :</label>
+        <input
+          class="input"
+          type="text"
+          name="numContact"
+          tabindex="6"
+          placeholder="24 557 60 70"
+        />
+      </div>
+    </form>
+    <div id="chatformbox">
+      <div class="chatformquestion">Hello, ça va ?</div>
+      <div class="chatformanswer">Yep!</div>
+      <div id="chatforminput"></div>
+    </div>
+  </body>
+</html>
