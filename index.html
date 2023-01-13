@@ -7,10 +7,13 @@
     <script src="chatform.js" defer></script>
   </head>
   <body>
+    <div id="chatformbox">
+    </div>
     <form
-      id="update-run-form"
+      id="frmUpdateRun"
       action="http://localhost:8000/runs"
       method="POST"
+      class="d-none"
     >
       <input
         type="hidden"
@@ -19,7 +22,7 @@
       />
       <input type="hidden" name="_method" value="POST" />
       <div class="field is-horizontal">
-        <label class="label">Artiste : </label>
+        <label class="label" for="search-input-artist">Artiste : </label>
         <input
           id="search-input-artist"
           tabindex="1"
@@ -33,10 +36,11 @@
         />
       </div>
       <div class="field is-horizontal">
-        <label class="label">Passagers :</label>
+        <label class="label" for="numPax">Passagers :</label>
         <input
+          id="numPax"
           class="input"
-          type="text"
+          type="number"
           name="passengers"
           tabindex="2"
           value=""
@@ -47,13 +51,15 @@
           tabindex="3"
           style="vertical-align: middle"
           name="pax_tbc"
+          id="pax_tbc"
         />
         <label for="pax_tbc" style="vertical-align: middle">A confirmer</label>
       </div>
 
       <div class="field is-horizontal">
-        <label class="label">Date :</label>
+        <label class="label" for="datRunDate">Date :</label>
         <input
+          id="datRunDate"
           class="input"
           type="date"
           name="planned_at_date"
@@ -64,8 +70,9 @@
       </div>
 
       <div class="field is-horizontal">
-        <label class="label">Informations</label>
+        <label class="label" for="txtInfos">Informations</label>
         <textarea
+          id="txtInfos"
           class="textarea"
           name="infos"
           tabindex="6"
@@ -73,8 +80,9 @@
         ></textarea>
       </div>
       <div class="field is-horizontal">
-        <label class="label">Transports :</label>
+        <label class="label" for="txtTransport">Transports :</label>
         <input
+          id="txtTransport"
           class="input"
           type="text"
           name="transportationMeans"
@@ -83,8 +91,9 @@
         />
       </div>
       <div class="field is-horizontal">
-        <label class="label">Nom du contact :</label>
+        <label class="label" for="txtContact">Nom du contact :</label>
         <input
+          id="txtContact"
           class="input"
           type="text"
           name="nameContact"
@@ -93,20 +102,16 @@
         />
       </div>
       <div class="field is-horizontal">
-        <label class="label">Numéro du contact :</label>
+        <label class="label" for="telContact">Numéro du contact :</label>
         <input
+          id="telContact"
           class="input"
-          type="text"
+          type="tel"
           name="numContact"
           tabindex="6"
           placeholder="24 557 60 70"
         />
       </div>
     </form>
-    <div id="chatformbox">
-      <div class="chatformquestion">Hello, ça va ?</div>
-      <div class="chatformanswer">Yep!</div>
-      <div id="chatforminput"></div>
-    </div>
   </body>
 </html>

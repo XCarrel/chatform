@@ -4,7 +4,7 @@ body {
 }
 
 #chatformbox {
-    width: 30%;
+    width: 50%;
     background-image: url('cfbg.jpeg');
     border: 1px solid black;
     border-radius: 5px;
@@ -19,7 +19,7 @@ body {
     margin-left: 60px;
     background-color: rgba(166,172,238,255);
     border-radius: 5px;
-    box-shadow: 3px 5px 7px rgb(150, 156, 239);
+    box-shadow: 3px 5px 3px rgb(15, 20, 90);
 }
 
 .chatformquestion {
@@ -30,5 +30,9 @@ body {
     margin-right: 60px;
     background-color: rgba(166,172,238,255);
     border-radius: 5px;
-    box-shadow: 3px 5px 7px rgb(150, 156, 239);
+    box-shadow: -3px 5px 3px rgb(15, 20, 90);
+}
+
+.d-none {
+    display: none;
 }
