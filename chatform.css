@@ -16,10 +16,11 @@ body {
     padding: 15px;
     margin: 5px;
     margin-bottom: 20px;
-    margin-left: 60px;
+    margin-left: 40%;
     background-color: rgba(166,172,238,255);
     border-radius: 5px;
     box-shadow: 3px 5px 3px rgb(15, 20, 90);
+	text-align: right;
 }
 
 .chatformquestion {
@@ -27,7 +28,7 @@ body {
     padding: 15px;
     margin: 5px;
     margin-bottom: 20px;
-    margin-right: 60px;
+    margin-right: 40%;
     background-color: rgba(166,172,238,255);
     border-radius: 5px;
     box-shadow: -3px 5px 3px rgb(15, 20, 90);

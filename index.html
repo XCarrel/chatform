@@ -7,8 +7,7 @@
     <script src="chatform.js" defer></script>
   </head>
   <body>
-    <div id="chatformbox">
-    </div>
+    <div id="chatformbox"></div>
     <form
       id="frmUpdateRun"
       action="http://localhost:8000/runs"
@@ -24,7 +23,7 @@
       <div class="field is-horizontal">
         <label class="label" for="search-input-artist">Artiste : </label>
         <input
-          id="search-input-artist"
+          id="txtArtist"
           tabindex="1"
           data-search-api-url="http://localhost:8000/artists/search"
           class="input"
@@ -47,6 +46,7 @@
           placeholder="Nombre de passagers"
         />
         <input
+          id="chkTBC"
           type="checkbox"
           tabindex="3"
           style="vertical-align: middle"

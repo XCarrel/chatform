@@ -2,48 +2,98 @@
 // Author: X. Carrel
 // Date: Jan 23
 
-// We only handle certain types of inputs
-var supportedInputTypes = ['text','date','checkbox','tel','email','number','radio','time']
+// TODO: Handle the textarea input. It is not a regular input field, thus not selected with the others
+// TODO: Handle the checkbox input with radio buttons
+// TODO: Have a list to pick from (waypoints)
+// TODO: Format date in answer bubble
+// TODO: Put something in the answer bubble when no answer is provided
 
-// List of alternate prompt texts
+// We only handle certain types of inputs
+var supportedInputTypes = [
+  "text",
+  "date",
+  "checkbox",
+  "tel",
+  "email",
+  "number",
+  "radio",
+  "time",
+];
+
+// List of prompt texts for each input
 // The key of the array is the id of the input
 var prompts = {
-    "numPax" : [
-        "Vous serez combien ?",
-        "Tout seul ou à plusieurs ?",
-        "Y'aura de la compagnie ?"
-    ],
-    "txtContact" : [
-        "C'est qui le boss ?",
-        "Qui contacter en cas de problème ?",
-        "Y'a un responsable dans le groupe ?"
-    ],
-}
+  txtArtist: ["C'est pour quel artiste ?"],
+  chkTBC: ["A confirmer ?"],
+  datRunDate: ["C'est pour aujourd'hui ou pour demain ?", "Pour quel jour ?"],
+  txtTransport: ["Un numéro de vol, de train ?"],
+  telContact: [
+    "On peut le/la joindre à quel numéro ?",
+    "Un numéro de portable ?",
+  ],
+  numPax: [
+    "Vous serez combien ?",
+    "Tout seul ou à plusieurs ?",
+    "Y'aura de la compagnie ?",
+  ],
+  txtContact: [
+    "C'est qui le boss ?",
+    "Qui contacter en cas de problème ?",
+    "Y'a un responsable dans le groupe ?",
+  ],
+};
 
-// Chat about all possible inputs
-for (input of document.getElementsByTagName('input')) {
-    if (supportedInputTypes.includes(input.type)) { // this is a supported input ...
-        if (prompts[input.id]){                     // ... for which we have at least one prompt
+// Gather all inputs in the whole page
+var inputs = Array.from(document.getElementsByTagName("input"));
 
-            // pick a prompt text at random
-            let pick = Math.floor(Math.random() * prompts[input.id].length)
-            prompText = prompts[input.id][pick]
+// reduce the list to thos we can handle
+inputs = inputs.filter((input) => supportedInputTypes.includes(input.type)); // by types
+inputs = inputs.filter((input) => input.id in prompts); // by available prompts
 
-            // show question
-            q = document.createElement('div')
-            q.classList.add('chatformquestion')
-            q.innerText = prompText
-            chatformbox.appendChild(q)
+// Formulate a question (question bubble + answer field) for the first of the remaining inputs
+function askNextQuestion() {
+  let input = inputs[0]; // next up, there must be one
 
-            // Handle dialog
-            input.value = prompt(prompText)
+  // pick a prompt text at random
+  let pick = Math.floor(Math.random() * prompts[input.id].length);
+  prompText = prompts[input.id][pick];
 
-            // Show answer
-            a = document.createElement('div')
-            a.classList.add('chatformanswer')
-            a.innerText = input.value
-            chatformbox.appendChild(a)
-        } 
+  // Question box
+  q = document.createElement("div");
+  q.classList.add("chatformquestion");
+  q.innerText = prompText;
+  chatformbox.appendChild(q);
+
+  // Answer box
+  a = document.createElement("div");
+  a.id = "question_" + input.id;
+  a.classList.add("chatformanswer");
+  inputCopy = input.cloneNode(); // use a duplicate input field (to keep the original inside the form)
+  inputCopy.addEventListener("keydown", (e) => {
+    if (e.key === "Tab" || e.key === "Enter") {
+      // end of input
+      hearAnswer(e.target.parentNode.id, e.target.value, input.id);
     }
+  });
+  a.appendChild(inputCopy);
+  a.tabindex = 0;
+  chatformbox.appendChild(a);
+  inputCopy.focus();
+  inputs.shift(); // get rid of the first input now that we processed it
 }
-frmUpdateRun.classList.remove('d-none')
+
+// Process the answer, i.e: turn the input field into a read-only bubble
+function hearAnswer(answerDisplay, value, targetInput) {
+  document.getElementById(answerDisplay).innerHTML = value;
+  document.getElementById(targetInput).value = value;
+  if (inputs.length > 0) {
+    setTimeout(() => {
+      askNextQuestion();
+    }, 500);
+  } else {
+    frmUpdateRun.classList.remove("d-none");
+  }
+}
+
+// Initiate the dialog
+if (inputs.length > 0) askNextQuestion();
